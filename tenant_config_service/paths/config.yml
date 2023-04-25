@@ -1,0 +1,72 @@
+get:
+  summary: Retrieve Tenant Specific Configuration
+  description: |
+    Retrieves Tenant Configuration for the corresponding identifier.
+  operationId: RetrieveConfig
+  security: 
+    - oauth:
+      - read
+  parameters:
+  - name: id
+    in: path
+    required: true
+    schema:
+      type: integer
+      minimum: 7
+      maximum: 10
+      format: int32
+  responses:
+    '200':
+      description: OK
+      content:
+        'application/json':
+          schema: 
+            $ref: '../components/schemas/Configuration.yml'
+    '401':
+      description: Not Authorized
+    '403':
+      description: Unauthorized
+    '404':
+      description: Not found
+    '406':
+      description: Not acceptable
+    '429':
+      description: Too many requests
+
+post:
+  summary: Create Tenant Specific Configuration
+  description: |
+     Creates a new tenant config if the input tenant ID is not present.
+  operationId: UpdateConfig
+  security: 
+    - oauth:
+      - read
+      - write
+  parameters:
+  - name: id
+    in: path
+    required: true
+    schema:
+      type: integer
+      minimum: 7
+      maximum: 10
+      format: int32
+
+put:
+  summary: Create/Update Tenant Specific Configuration
+  description: |
+    Partial update of configuration of existing tenant identifier is passed then the configuration is updated.
+  operationId: CreateConfig
+  security: 
+    - oauth:
+      - read
+      - write
+  parameters:
+  - name: id
+    in: path
+    required: true
+    schema:
+      type: integer
+      minimum: 7
+      maximum: 10
+      format: int32

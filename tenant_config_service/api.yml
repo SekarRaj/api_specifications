@@ -3,44 +3,13 @@ info:
   title: Tenant Config Service
   version: '1.0'
 servers:
-  - url: https://localhost:9999/tenant/v1
+  - url: https://localhost:9999/api/v1
+tags:
+  - name: config
+    description: Configuration entries for tenants
 paths:
-  /config/{id}:
-    get:
-      summary: Retrieve Tenant Specific Configuration
-      description: |
-        Retrieves Tenant Configuration for the corresponding identifier.
-      operationId: RetrieveConfig
-      security: 
-        - oauth:
-          - write
-          - read
-      parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
-          minimum: 7
-          maximum: 10
-          format: int32
-      responses:
-        '200':
-          description: OK
-          content:
-            'application/json':
-              schema: 
-                $ref: '../components/schemas/Configuration'
-        '401':
-          description: Not Authorized
-        '403':
-          description: Unauthorized
-        '404':
-          description: Not found
-        '406':
-          description: Not acceptable
-        '429':
-          description: Too many requests
+  '/config/{id}':
+    $ref: './paths/config.yml'
 
 components: 
   securitySchemes: 
